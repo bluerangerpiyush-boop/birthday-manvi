@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Manvi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- 🎉 Heading -->
+    <h1 class="title">🎉 Happy Birthday 🎉</h1>
+    
+    <!-- ⭐ DOB Box -->
+    <div class="date_of_birth">
+      <span>⭐ 16 September 2008 ⭐</span>
+    </div>
+
+    <!-- ⏳ Countdown Timer -->
+    <div class="countdown_box">
+      <span id="countdown">⏳ Loading...</span>
+    </div>
+
+    <!-- 🖼️ Manvi Image -->
+    <div class="imgBox">
+      <img src="images/manvi1.jpg" alt="Manvi">
+      <p class="img_caption">💕 Our Star: Manvi 💕</p>
+    </div>
+
+    <!-- 🔒 Click Button -->
+    <div class="btn">
+      <button id="btn__letter" disabled>
+        🔒 Click here Manvi ❤ <i class="fa-regular fa-envelope"></i>
+      </button>
+    </div>
+
+    <!-- 🎶 Background Music -->
+    <audio id="bg-music" autoplay loop>
+      <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-controls">
+      <button onclick="toggleMusic()">🎵 Play / Pause</button>
+    </div>
+  </div>
+
+  <!-- 🎂 Countdown + Unlock Script -->
+  <script>
+    const birthday = new Date("September 16, 2025 00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    const btnLetter = document.getElementById("btn__letter");
+    const music = document.getElementById("bg-music");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = birthday - now;
+
+      if (diff <= 0) {
+        countdownEl.innerHTML = "🎉 It's Manvi's Birthday Today! 🎂💕";
+        btnLetter.disabled = false;
+        btnLetter.classList.add("unlocked");
+        btnLetter.innerHTML = "Click here Manvi ❤ <i class='fa-regular fa-envelope'></i>";
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        countdownEl.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s left for Manvi's Birthday 🎂`;
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 🎶 Music Toggle
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+</body>
+</html>
